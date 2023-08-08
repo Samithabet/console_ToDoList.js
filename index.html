@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To-Do List</title>
+<link rel="stylesheet" href="./css/main.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<div class="container">
+    <div id="newtask">
+        <input type="text" placeholder="Add Tasks">
+        <button id="push" onclick="addTask()">Add</button>
+    </div>
+    <div id="tasks"></div>
+
+</div>
+</div>
+
+<script>
+document.querySelector('#push').onclick = function (){
+    if(document.querySelector('#newtask input').value.length == 0){
+        alert("Kindly Enter Task Name!!!!")
+    }
+
+    else{
+        document.querySelector('#tasks').innerHTML += `
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        `;
+        document.querySelector('#newtask input').value="";
+
+        var current_tasks = document.querySelectorAll(".delete");
+        for(var i=0; i<current_tasks.length; i++){
+            current_tasks[i].onclick = function(){
+                this.parentNode.remove();
+            }
+        
+
+
+        }
+    }
+}
+</script>
+
+</body>
+</html>
